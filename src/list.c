@@ -14,7 +14,7 @@ struct ll_node {
     struct ll_node *next;
 };
 
-extern void *ll_append_node (struct ll_node **head, intmax_t data)
+void *ll_append_node (struct ll_node **head, intmax_t data)
 {
     while (ISNONZERO ((*head)->next)) {
         (*head) = (*head)->next;
@@ -30,8 +30,8 @@ extern void *ll_append_node (struct ll_node **head, intmax_t data)
     return *head;
 }
 
-extern struct ll_node *ll_build_head (size_t size,
-                                      const intmax_t data[size])
+struct ll_node *ll_build_head (size_t size,
+                                      const intmax_t data[static size])
 {
     struct ll_node *head = 0;
 
@@ -44,7 +44,7 @@ extern struct ll_node *ll_build_head (size_t size,
     return head;
 }
 
-extern size_t ll_count_occurrence (struct ll_node **head, intmax_t data)
+size_t ll_count_occurrence (struct ll_node **head, intmax_t data)
 {
     size_t count;
 
@@ -56,7 +56,7 @@ extern size_t ll_count_occurrence (struct ll_node **head, intmax_t data)
     return count;
 }
 
-extern void ll_delete (struct ll_node **head)
+void ll_delete (struct ll_node **head)
 {
     assert (head);
 
@@ -68,7 +68,7 @@ extern void ll_delete (struct ll_node **head)
     }
 }
 
-extern struct ll_node *const ll_find_node (struct ll_node **head, size_t index)
+struct ll_node *ll_find_node (struct ll_node **head, size_t index)
 {
     assert (head);
 
@@ -80,25 +80,25 @@ extern struct ll_node *const ll_find_node (struct ll_node **head, size_t index)
     return 0;
 }
 
-extern intmax_t ll_get_data (struct ll_node *const *head)
+intmax_t ll_get_data (struct ll_node *const *head)
 {
     assert (head && *head);
     return (*head)->data;
 }
 
-extern bool ll_is_singular (struct ll_node **head)
+bool ll_is_singular (struct ll_node **head)
 {
     assert (head);
 	return ISZERO (ll_is_empty (head)) && ISZERO ((*head)->next);
 }
 
-extern bool ll_is_empty (struct ll_node **head)
+bool ll_is_empty (struct ll_node **head)
 {
     assert (head);
     return ISZERO (*head);
 }
 
-extern bool ll_is_containing (struct ll_node **head, intmax_t data)
+bool ll_is_containing (struct ll_node **head, intmax_t data)
 {
     assert (head && *head);
 
@@ -110,7 +110,7 @@ extern bool ll_is_containing (struct ll_node **head, intmax_t data)
     return false;
 }
 
-extern bool ll_insert_pos (struct ll_node **head, size_t index,
+bool ll_insert_pos (struct ll_node **head, size_t index,
                            intmax_t data)
 {
     assert (head);
@@ -136,7 +136,7 @@ extern bool ll_insert_pos (struct ll_node **head, size_t index,
     return true;
 }
 
-extern bool ll_push_node (struct ll_node **head, intmax_t data)
+bool ll_push_node (struct ll_node **head, intmax_t data)
 {
     assert (head);
 
@@ -151,7 +151,7 @@ extern bool ll_push_node (struct ll_node **head, intmax_t data)
     return true;
 }
 
-extern int ll_print (struct ll_node **head)
+int ll_print (struct ll_node **head)
 {
     assert (head && *head);
 
@@ -167,7 +167,7 @@ extern int ll_print (struct ll_node **head)
     return ret_val;
 }
 
-extern intmax_t ll_pop_node (struct ll_node **head)
+intmax_t ll_pop_node (struct ll_node **head)
 {
     assert (head && *head);
 
@@ -181,7 +181,7 @@ extern intmax_t ll_pop_node (struct ll_node **head)
 
 }
 
-extern intmax_t ll_pop_end (struct ll_node **head)
+intmax_t ll_pop_end (struct ll_node **head)
 {
     assert (head && *head);
 
@@ -199,7 +199,7 @@ extern intmax_t ll_pop_end (struct ll_node **head)
     return result;
 }
 
-extern intmax_t ll_pop_pos (struct ll_node **head, size_t index)
+intmax_t ll_pop_pos (struct ll_node **head, size_t index)
 {
     assert (head && *head);
 
@@ -227,7 +227,7 @@ extern intmax_t ll_pop_pos (struct ll_node **head, size_t index)
     return result;
 }
 
-extern void ll_remove (struct ll_node **head, intmax_t data)
+void ll_remove (struct ll_node **head, intmax_t data)
 {
     assert (head && *head);
 
@@ -243,7 +243,7 @@ extern void ll_remove (struct ll_node **head, intmax_t data)
     }
 }
 
-extern void ll_remove_dup (struct ll_node **head)
+void ll_remove_dup (struct ll_node **head)
 {
     assert (head && *head);
 
@@ -258,7 +258,7 @@ extern void ll_remove_dup (struct ll_node **head)
     }
 }
 
-extern void ll_remove_if (struct ll_node **head,
+void ll_remove_if (struct ll_node **head,
                           bool (*predicate) (intmax_t data))
 {
     assert (head && *head);
@@ -275,7 +275,7 @@ extern void ll_remove_if (struct ll_node **head,
     }
 }
 
-extern void ll_replace_node (struct ll_node **head, intmax_t old_data,
+void ll_replace_node (struct ll_node **head, intmax_t old_data,
                              intmax_t new_data)
 {
     assert (head && *head);
@@ -288,7 +288,7 @@ extern void ll_replace_node (struct ll_node **head, intmax_t old_data,
     }
 }
 
-extern void ll_reverse (struct ll_node **head)
+void ll_reverse (struct ll_node **head)
 {
     assert (head && *head);
 
@@ -304,7 +304,7 @@ extern void ll_reverse (struct ll_node **head)
     *head = new_head;
 }
 
-extern intmax_t ll_size (struct ll_node **head)
+intmax_t ll_size (struct ll_node **head)
 {
     assert (head);
 
@@ -316,7 +316,7 @@ extern intmax_t ll_size (struct ll_node **head)
     return count;
 }
 
-extern void ll_splice (struct ll_node **list, struct ll_node **head)
+void ll_splice (struct ll_node **list, struct ll_node **head)
 {
     assert (list && head && *head);
 
@@ -328,7 +328,7 @@ extern void ll_splice (struct ll_node **list, struct ll_node **head)
     }
 }
 
-extern void ll_set_data (struct ll_node **head, intmax_t data)
+void ll_set_data (struct ll_node **head, intmax_t data)
 {
     assert (head && *head);
     (*head)->data = data;

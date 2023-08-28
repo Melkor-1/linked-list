@@ -21,7 +21,7 @@ struct ll_node;
 *			 that was passed in. ELse, it returns a NULL pointer to indicate 
 *			 allocation failure.
 */
-extern void *ll_append_node (struct ll_node **head, intmax_t data);
+void *ll_append_node (struct ll_node **head, intmax_t data);
 
 /** 
 *	@brief	 ll_build_head() shall build a linked list by inserting nodes at the
@@ -35,8 +35,8 @@ extern void *ll_append_node (struct ll_node **head, intmax_t data);
 *			 a memory allocation failure. A NULL pointer shall also be returned if
 *			 size evaluates to 0.
 */
-extern struct ll_node *ll_build_head (size_t size,
-                                      const intmax_t data[size]);
+struct ll_node *ll_build_head (size_t size,
+                                      const intmax_t data[static size]);
 
 /** 
 *	@brief	 ll_build_tail() shall build a linked list by inserting the first 
@@ -50,7 +50,7 @@ extern struct ll_node *ll_build_head (size_t size,
 *			 to indicate a memory allocation failure. A NULL pointer would also 
 *			 be returned if size evaluates to 0..
 */
-extern struct ll_node *ll_build_tail (size_t size,
+struct ll_node *ll_build_tail (size_t size,
                                       const intmax_t data[size]);
 
 
@@ -62,7 +62,7 @@ extern struct ll_node *ll_build_tail (size_t size,
 *	@return	 Upon successful return, ll_count_occurences() shall return the 
 *			 count of the number of occurrences of data seen in the list.
 */
-extern size_t ll_count_occurrence (struct ll_node **head, intmax_t data);
+size_t ll_count_occurrence (struct ll_node **head, intmax_t data);
 
 /**
 *	@brief	 ll_delete() shall free all the items in the list. Allows head to be NULL
@@ -70,7 +70,7 @@ extern size_t ll_count_occurrence (struct ll_node **head, intmax_t data);
 *	@param	 head - A pointer to the head of the list.
 *	@return  This function returns nothing.
 */
-extern void ll_delete (struct ll_node **head);
+void ll_delete (struct ll_node **head);
 
 /** 
 *	@brief	ll_find_node() shall search the list for the node at index index.
@@ -81,7 +81,7 @@ extern void ll_delete (struct ll_node **head);
 *			A NULL pointer would also be returned for an empty list, i.e. 
 *			a NULL head pointer.
 */
-extern struct ll_node *const ll_find_node (struct ll_node **head, size_t index);
+struct ll_node *ll_find_node (struct ll_node **head, size_t index);
 
 /** 
 *	@brief	 ll_get_data() shall obtain the value of the item associated with
@@ -95,7 +95,7 @@ extern struct ll_node *const ll_find_node (struct ll_node **head, size_t index);
 *			 in. Failure to comply could result in unexpected program termination
 *			 and potential loss of data.
 */
-extern intmax_t ll_get_data (struct ll_node *const *head);
+intmax_t ll_get_data (struct ll_node *const *head);
 
 /**
 *	@brief   ll_is_singular() tests whether a list has only one item.
@@ -103,7 +103,7 @@ extern intmax_t ll_get_data (struct ll_node *const *head);
 *	@return  ll_is_singular() returns true if the list is singular.
 *			 Otherwise, it returns false.
 */
-extern bool ll_is_singular (struct ll_node **head);
+bool ll_is_singular (struct ll_node **head);
 
 /** 
 *	@brief	 ll_is_empty() tests whether a list is empty.
@@ -111,7 +111,7 @@ extern bool ll_is_singular (struct ll_node **head);
 *	@return	 ll_is_empty() returns true if the list is empty. Otherwise,
 *			 it returns false.
 */
-extern bool ll_is_empty (struct ll_node **head);
+bool ll_is_empty (struct ll_node **head);
 
 /** 
 *	@brief	 ll_is_containing() shall search each node of the list pointed to by head
@@ -121,7 +121,7 @@ extern bool ll_is_empty (struct ll_node **head);
 *	@return	 Upon successful return, ll_is_containing() returns true. Otherwise it returns 
 *			 false to indicate failure.
 */
-extern bool ll_is_containing (struct ll_node **head, intmax_t data);
+bool ll_is_containing (struct ll_node **head, intmax_t data);
 
 /** 
 *	@brief	 ll_insert_pos() shall insert a new node at position index 
@@ -136,7 +136,7 @@ extern bool ll_is_containing (struct ll_node **head, intmax_t data);
 *			 not NULL. Failing to comply could result in unexpected program
 *			 termination and potential loss of data.
 */
-extern bool ll_insert_pos (struct ll_node **head, size_t index,
+bool ll_insert_pos (struct ll_node **head, size_t index,
                            intmax_t data);
 
 /**	
@@ -151,7 +151,7 @@ extern bool ll_insert_pos (struct ll_node **head, size_t index,
 *			 not NULL. Failing to comply could result in unexpected program
 *			 termination and potential loss of data.
 */
-extern bool ll_push_node (struct ll_node **head, intmax_t data);
+bool ll_push_node (struct ll_node **head, intmax_t data);
 
 /**
 *	@brief	 ll_print() prints the value of all the items associated with a node.
@@ -160,7 +160,7 @@ extern bool ll_push_node (struct ll_node **head, intmax_t data);
 *	@return	 Upon successful return, ll_print return the number of bytes 
 *			 written.
 */
-extern int ll_print (struct ll_node **head);
+int ll_print (struct ll_node **head);
 
 /** 
 *	@brief	 ll_pop_node() pops the first node pointed to by head.
@@ -173,7 +173,7 @@ extern int ll_print (struct ll_node **head);
 *			 could result in unexpected program termination and potential loss
 *			 of data.
 */
-extern intmax_t ll_pop_node (struct ll_node **head);
+intmax_t ll_pop_node (struct ll_node **head);
 
 /** 
 *	@brief	 ll_pop_end() pops the node at the end of the list.
@@ -185,7 +185,7 @@ extern intmax_t ll_pop_node (struct ll_node **head);
 *			 could result in unexpected program termination and potential 
 *			 loss of data.
 */
-extern intmax_t ll_pop_end (struct ll_node **head);
+intmax_t ll_pop_end (struct ll_node **head);
 
 /** 
 *	@brief   ll_pop_pos() pops the node at index index of the list.	
@@ -195,7 +195,7 @@ extern intmax_t ll_pop_end (struct ll_node **head);
 *			 index index and returns the value associated with that node.
 *			 Otherwise, it returns INTMAX_MIN to indicate failure.
 */
-extern intmax_t ll_pop_pos (struct ll_node **head, size_t index);
+intmax_t ll_pop_pos (struct ll_node **head, size_t index);
 
 /**
 *	@brief	 ll_remove() shall remove all nodes that matches data.
@@ -207,7 +207,7 @@ extern intmax_t ll_pop_pos (struct ll_node **head, size_t index);
 *			 could result in unexpected program termination and potential 
 *			 loss of data.
 */
-extern void ll_remove (struct ll_node **head, intmax_t data);
+void ll_remove (struct ll_node **head, intmax_t data);
 
 /**
 *	@brief	 ll_remove_dup() takes a sorted list in increasing order and removes 
@@ -219,7 +219,7 @@ extern void ll_remove (struct ll_node **head, intmax_t data);
 *			 could result in unexpected program termination and potential 
 *			 loss of data.
 */
-extern void ll_remove_dup (struct ll_node **head);
+void ll_remove_dup (struct ll_node **head);
 
 /**
 *	@brief	 ll_remove_if() shall remove all nodes for which predicate returns true.
@@ -232,7 +232,7 @@ extern void ll_remove_dup (struct ll_node **head);
 *			 could result in unexpected program termination and potential 
 *			 loss of data.
 */
-extern void ll_remove_if (struct ll_node **head,
+void ll_remove_if (struct ll_node **head,
                           bool (*predicate) (intmax_t data));
 
 /** 
@@ -247,7 +247,7 @@ extern void ll_remove_if (struct ll_node **head,
 *			 not NULL. Failing to comply could result in unexpected program
 *			 termination and potential loss of data.
 */
-extern void ll_replace_node (struct ll_node **head, intmax_t old_data,
+void ll_replace_node (struct ll_node **head, intmax_t old_data,
                              intmax_t new_data);
 /**
 *	@brief	 ll_reverse() shall reverse the list pointed to by head. 
@@ -258,7 +258,7 @@ extern void ll_replace_node (struct ll_node **head, intmax_t old_data,
 *			 could result in unexpected program termination and potential
 *			 loss of data.
 */
-extern void ll_reverse (struct ll_node **head);
+void ll_reverse (struct ll_node **head);
 
 /**
 *	@brief	 ll_size() shall count the number of items in the list.
@@ -266,7 +266,7 @@ extern void ll_reverse (struct ll_node **head);
 *	@return  Upon successful return, ll_size() returns number
 *			 of items present.
 */
-extern intmax_t ll_size (struct ll_node **head);
+intmax_t ll_size (struct ll_node **head);
 
 /**
 *	@brief	 ll_splice() shall join two lists by inserting list immediately 
@@ -280,7 +280,7 @@ extern intmax_t ll_size (struct ll_node **head);
 *			 Failing to comply could result in unexpected program termination
 *			 and potential loss of data.
 */
-extern void ll_splice (struct ll_node **list, struct ll_node **head);
+void ll_splice (struct ll_node **list, struct ll_node **head);
 
 /**
 *	@brief	 ll_set_data() shall update the value of the item associated with 
@@ -292,6 +292,6 @@ extern void ll_splice (struct ll_node **list, struct ll_node **head);
 *			 in. Failure to comply could result in enexpected program termination
 *			 and potential loss of data.
 */
-extern void ll_set_data (struct ll_node **head, intmax_t data);
+void ll_set_data (struct ll_node **head, intmax_t data);
 
 #endif

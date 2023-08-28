@@ -1,78 +1,54 @@
-# the compiler
-CC = gcc-10
-
-# the compiler flags
+CFLAGS += -std=c17
+CFLAGS += -s
 CFLAGS += -std=c17
 CFLAGS += -no-pie
-CFLAGS += -g3
-CFLAGS += -ggdb
+#CFLAGS += -g3
+#CFLAGS += -ggdb
 CFLAGS += -Wall
 CFLAGS += -Wextra
 CFLAGS += -Warray-bounds
 CFLAGS += -Wconversion
 CFLAGS += -Wmissing-braces
 CFLAGS += -Wno-parentheses
+CFLAGS += -Wno-format-truncation
 CFLAGS += -Wpedantic
 CFLAGS += -Wstrict-prototypes
 CFLAGS += -Wwrite-strings
 CFLAGS += -Winline
-#CFLAGS += -s
+CFLAGS += -O2
 
-#CFLAGS += -fanalyzer
-#CFLAGS += -fno-builtin
-#CFLAGS += -fno-common
-#CFLAGS += -fno-omit-frame-pointer
-#CFLAGS += -fsanitize=address
-#CFLAGS += -fsanitize=undefined
-#CFLAGS += -fsanitize=bounds-strict
-#CFLAGS += -fsanitize=leak
-#CFLAGS += -fsanitize=null
-#CFLAGS += -fsanitize=signed-integer-overflow
-#CFLAGS += -fsanitize=bool
-#CFLAGS += -fsanitize=pointer-overflow
-#CFLAGS += -fsanitize-address-use-after-scope
-#CFLAGS += -O2
+NAME	:= libslist
+LIBDIR 	:= bin
+SLIB  	:= $(LIBDIR)/$(NAME).a
+DLIB  	:= $(LIBDIR)/$(NAME).so
+SRCS 	:= $(wildcard src/*.c)
+OBJS 	:= $(patsubst src/%.c, obj/%.o, $(SRCS)) 
+LDLIBS 	:= -lcriterion
 
-SRC = src
-OBJ = obj
-SRCS= $(wildcard $(SRC)/*.c)
-OBJS = $(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
+TESTBIN := $(patsubst test/%.c, test/bin/%, $(wildcard test/*.c)) 
 
-LIBDIR = lib
-LIB = $(LIBDIR)/list.a
+all: $(SLIB) $(DLIB)
 
-TEST = tests
-TESTS = $(wildcard $(TEST)/*.c)
-TESTBINS = $(patsubst $(TEST)/%.c, $(TEST)/bin/%, $(TESTS)) 
+$(SLIB): $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^ 
 
-all: $(LIB)
+$(DLIB): $(OBJS)
+	$(CC) $(CFLAGS) -fPIC -shared $(SRCS) -o $@
 
-$(LIB): $(LIBDIR) $(OBJ) $(OBJS)
-	ar -cvrs $(LIB) $(OBJS)
-
-$(OBJ)/%.o: $(SRC)/%.c $(SRC)/%.h
+obj/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ)/%.o: $(SRC)%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-$(TEST)/bin:
-	mkdir $@
-
-$(OBJ):
-	mkdir $@
-
-$(LIBDIR):
-	mkdir $@
-
-$(TEST)/bin/%: $(TEST)/%.c
-	$(CC) $(CFLAGS) $< $(OBJS) -o $@ -lcriterion
+test/bin/%: test/%.c
+	$(CC) $(CFLAGS) $< $(OBJS) -o $@ $(LDLIBS)
 	
-test: $(LIB) $(TEST)/bin $(TESTBINS) 
-	for test in $(TESTBINS) ; do ./$$test ; done
+test: $(SLIB) $(TESTBIN) 
+	for test in $(TESTBIN) ; do ./$$test ; done
 
 clean:
-	$(RM) -rf $(LIBDIR) $(OBJ) $(TESTBINS)
+	$(RM) -rf $(OBJS) $(TESTBIN)
 
-.PHONY: clean
+fclean:
+	$(RM) $(SLIB) $(DLIB)
+
+.PHONY: fclean clean all test
 .DELETE_ON_ERROR:

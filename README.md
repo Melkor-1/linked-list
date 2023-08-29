@@ -35,9 +35,9 @@ This will compile the library and generate the static library `(libslist_$(ARCH)
 1. Make sure you have the library built.
 
 2. Run the tests:
-~~~
+```bash
 make test
-~~~
+```
 
 This will compile and run the tests from the `tests` directory using the Criterion framework.
 
@@ -47,11 +47,11 @@ To use the linked list library in your own projects:
 
 1. Include the library header file `list.h` in your source code:
 
-~~~
+```c
 #include "list.h"
-~~~
+```
 
-Link your project with the compiled library `lib/list.a`.
+Link your project with the compiled static or dynamic library.
 
 Refer to the documentation in the header file for information on available functions and their usage.
 

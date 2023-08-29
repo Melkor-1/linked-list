@@ -1,4 +1,4 @@
-# libslit - Cusotm Singly Linked List Library
+# libslist - Custom Singly Linked List Library
 
 `libslist` is a simple linked list library written in C that provides various operations for creating, manipulating, and managing linked lists.
 

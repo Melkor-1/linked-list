@@ -28,7 +28,7 @@ cd linked-list-library
 make
 ~~~
 
-This will compile the library and generate the static library `libslist.a` and dynamic library `libslist.so` in the `bin` directory.
+This will compile the library and generate the static library (.a) and dynamic library (.so) in the `bin` directory.
 
 ### Running Tests
 

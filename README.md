@@ -1,6 +1,6 @@
-# Singly Linked List Library
+# libslit - Cusotm Singly Linked List Library
 
-This is a simple linked list library written in C that provides various operations for creating, manipulating, and managing linked lists.
+`libslist` is a simple linked list library written in C that provides various operations for creating, manipulating, and managing linked lists.
 
 ## Features
 
@@ -28,7 +28,7 @@ cd linked-list-library
 make
 ~~~
 
-This will compile the library and generate the static library (.a) and dynamic library (.so) in the `bin` directory.
+This will compile the library and generate the static library `(libslist_$(ARCH)-$(OS).a)` and dynamic library `(libslist_$(ARCH)-(OS).so)` in the `bin` directory.
 
 ### Running Tests
 

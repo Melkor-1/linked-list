@@ -1,4 +1,4 @@
-# Linked List Library
+# Singly Linked List Library
 
 This is a simple linked list library written in C that provides various operations for creating, manipulating, and managing linked lists.
 
@@ -28,7 +28,7 @@ cd linked-list-library
 make
 ~~~
 
-This will compile the library and generate the static library `lib/list.a` in the `lib` directory.
+This will compile the library and generate the static library (.a) and dynamic library (.so) in the `bin` directory.
 
 ### Running Tests
 

@@ -1,4 +1,4 @@
-# Linked List Library
+# Singly Linked List Library
 
 This is a simple linked list library written in C that provides various operations for creating, manipulating, and managing linked lists.
 

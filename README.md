@@ -18,15 +18,15 @@ To compile and test the library, you'll need the [Criterion](https://github.com/
 ### Building the Library
 
 1. Clone this repository:
-~~~
+```bash
 git clone https://github.com/your-username/linked-list-library.git
 cd linked-list-library
-~~~
+```
 
 2. Build the library:
-~~~
+```bash
 make
-~~~
+```
 
 This will compile the library and generate the static library `(libslist_$(ARCH)-$(OS).a)` and dynamic library `(libslist_$(ARCH)-(OS).so)` in the `bin` directory.
 

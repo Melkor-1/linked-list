@@ -1,4 +1,4 @@
-CFLAGS 	+= -s
+CFLAGS 	:= -s
 CFLAGS 	+= -std=c17
 CFLAGS 	+= -no-pie
 #CFLAGS += -g3
@@ -16,7 +16,7 @@ CFLAGS 	+= -Wwrite-strings
 CFLAGS 	+= -Winline
 CFLAGS 	+= -O2
 
-NAME	:= libslist
+NAME	:= libslist_$(shell uname -m)-$(shell uname -s)
 LIBDIR 	:= bin
 SLIB  	:= $(LIBDIR)/$(NAME).a
 DLIB  	:= $(LIBDIR)/$(NAME).so

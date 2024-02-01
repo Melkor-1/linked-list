@@ -1,5 +1,7 @@
 # libslist - Custom Singly Linked List Library
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://https://github.com/Melkor-1/libslist/edit/main/LICENSE)
+
 `libslist` is a simple linked list library written in C that provides various operations for creating, manipulating, and managing linked lists.
 
 ## Features
@@ -57,6 +59,3 @@ Refer to the documentation in the header file for information on available funct
 
 ## Contributing
 Contributions are welcome! If you find any issues or want to add new features or improvements, feel free to open a pull request.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.

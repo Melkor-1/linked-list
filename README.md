@@ -1,4 +1,4 @@
-# libslist - Custom Singly Linked List Library
+# libslist
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://https://github.com/Melkor-1/libslist/edit/main/LICENSE)
 
